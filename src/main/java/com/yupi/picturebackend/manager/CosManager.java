@@ -75,6 +75,7 @@ public class CosManager {
             String thumbnailKey = FileUtil.mainName(key) + "_thumbnail." + FileUtil.getSuffix(key);
             thumbnailRule.setFileId(thumbnailKey);
             thumbnailRule.setBucket(cosClientConfig.getBucket());
+            // 注意 AI 扩图功能调用的阿里云百炼规则要求图像分辨率：不低于512×512像素且不超过4096×4096像素，反正随便玩，你爱改不改
             thumbnailRule.setRule(String.format("imageMogr2/thumbnail/%sx%s>", 256, 256));
             rules.add(thumbnailRule);
         }

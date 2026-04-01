@@ -172,7 +172,7 @@ public class SpaceServiceImpl extends ServiceImpl<SpaceMapper, Space>
         this.validSpace(space, true);
         // 3.权限校验，非管理员只能创建普通版空间
         Long userId = loginUser.getId();
-        space.setId(userId);
+        space.setUserId(userId);
         if (space.getSpaceLevel() != SpaceLevelEnum.COMMON.getValue() && !userService.isAdmin(loginUser)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR, "无权限创建指定级别的空间");
         }
