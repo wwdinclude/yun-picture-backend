@@ -9,6 +9,7 @@ import com.yupi.picturebackend.constant.UserConstant;
 import com.yupi.picturebackend.exception.BusinessException;
 import com.yupi.picturebackend.exception.ErrorCode;
 import com.yupi.picturebackend.exception.ThrowUtils;
+import com.yupi.picturebackend.manager.auth.SpaceUserAuthManager;
 import com.yupi.picturebackend.model.dto.space.*;
 import com.yupi.picturebackend.model.entity.Space;
 import com.yupi.picturebackend.model.entity.User;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -33,6 +35,9 @@ public class SpaceController {
 
     @Resource
     private SpaceService spaceService;
+
+    @Resource
+    private SpaceUserAuthManager spaceUserAuthManager;
     
     /**
      * 删除空间
@@ -103,8 +108,12 @@ public class SpaceController {
         // 查询数据库
         Space space = spaceService.getById(id);
         ThrowUtils.throwIf(space == null, ErrorCode.NOT_FOUND_ERROR);
+        SpaceVO spaceVO = spaceService.getSpaceVO(space, request);
+        User loginUser = userService.getLoginUser(request);
+        List<String> permissionList = spaceUserAuthManager.getPermissionList(space, loginUser);
+        spaceVO.setPermissionList(permissionList);
         // 获取封装类
-        return ResultUtils.success(spaceService.getSpaceVO(space, request));
+        return ResultUtils.success(spaceVO);
     }
 
     /**

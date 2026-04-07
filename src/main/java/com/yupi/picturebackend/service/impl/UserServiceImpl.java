@@ -10,6 +10,7 @@ import com.yupi.picturebackend.constant.UserConstant;
 import com.yupi.picturebackend.exception.BusinessException;
 import com.yupi.picturebackend.exception.ErrorCode;
 import com.yupi.picturebackend.exception.ThrowUtils;
+import com.yupi.picturebackend.manager.auth.StpKit;
 import com.yupi.picturebackend.model.dto.user.UserQueryRequest;
 import com.yupi.picturebackend.model.entity.User;
 import com.yupi.picturebackend.model.enums.UserRoleEnum;
@@ -108,6 +109,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         // 4.保存用户的登录态
         request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
+        // 记录用户登录态到 Sa-token，便于空间鉴权时使用，注意保证该用户信息与 SpringSession 中的信息过期时间一致
+        StpKit.SPACE.login(user.getId());
+        StpKit.SPACE.getSession().set(UserConstant.USER_LOGIN_STATE, user);
         return this.getLoginUserVO(user);
     }
 
