@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yupi.picturebackend.exception.BusinessException;
 import com.yupi.picturebackend.exception.ErrorCode;
 import com.yupi.picturebackend.exception.ThrowUtils;
-import com.yupi.picturebackend.manager.sharding.DynamicShardingManager;
 import com.yupi.picturebackend.model.dto.space.SpaceAddRequest;
 import com.yupi.picturebackend.model.dto.space.SpaceQueryRequest;
 import com.yupi.picturebackend.model.entity.Space;
@@ -25,8 +24,6 @@ import com.yupi.picturebackend.service.SpaceService;
 import com.yupi.picturebackend.mapper.SpaceMapper;
 import com.yupi.picturebackend.service.SpaceUserService;
 import com.yupi.picturebackend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
