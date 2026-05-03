@@ -31,32 +31,32 @@ spring:
     multipart:
       max-file-size: 10MB
   # 空间图片分表
-  shardingsphere:
-    datasource:
-      names: yun_picture
-      yun_picture:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/yun_picture
-        username: root
-        password: 123456
-    rules:
-      sharding:
-        tables:
-          picture:
-            actual-data-nodes: yun_picture.picture  # 动态分表
-            table-strategy:
-              standard:
-                sharding-column: spaceId
-                sharding-algorithm-name: picture_sharding_algorithm  # 使用自定义分片算法
-        sharding-algorithms:
-          picture_sharding_algorithm:
-            type: CLASS_BASED
-            props:
-              strategy: standard
-              algorithmClassName: com.yupi.picturebackend.manager.sharding.PictureShardingAlgorithm
-    props:
-      sql-show: true
+#  shardingsphere:
+#    datasource:
+#      names: yun_picture
+#      yun_picture:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://localhost:3306/yun_picture
+#        username: root
+#        password: 123456
+#    rules:
+#      sharding:
+#        tables:
+#          picture:
+#            actual-data-nodes: yun_picture.picture  # 动态分表
+#            table-strategy:
+#              standard:
+#                sharding-column: spaceId
+#                sharding-algorithm-name: picture_sharding_algorithm  # 使用自定义分片算法
+#        sharding-algorithms:
+#          picture_sharding_algorithm:
+#            type: CLASS_BASED
+#            props:
+#              strategy: standard
+#              algorithmClassName: com.yupi.picturebackend.manager.sharding.PictureShardingAlgorithm
+#    props:
+#      sql-show: true
 #  profiles:
 #    active: local
 
