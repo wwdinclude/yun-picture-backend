@@ -1,6 +1,9 @@
 # AC 的云图库后端代码
 前端代码链接https://github.com/wwdinclude/yun-picture-fronted  
 
+## 注意事项
+我的 application-local.yml 和 application-prod.yml 未上传，请自己配置自己的api-key
+
 ## aly的学生包不能给域名备案，所以没办法给链接了，直接放ECS的公网IP的话还是太开放了
 
 # 项目介绍
