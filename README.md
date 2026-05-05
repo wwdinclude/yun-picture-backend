@@ -5,7 +5,7 @@
 jdk为17及以上
 我的 application-local.yml 和 application-prod.yml 未上传，请自己配置自己的api-key
 
-## aly的学生包不能给域名备案，所以没办法给链接了，直接放ECS的公网IP的话还是太开放了
+## aly的学生包不能给域名备案，所以没办法给项目演示的链接了，直接放ECS的公网IP的话还是太开放了
 
 # 项目介绍
 基于 Vue 3 + Spring Boot + COS + WebSocket 的 企业级智能协同云图库平台。  
